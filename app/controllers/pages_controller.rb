@@ -1,10 +1,9 @@
 class PagesController < ApplicationController
-
+  $count=0
   def fortune_method
     fortune=["You are going to get an amaizing car", "life is amaizing dont let bills hold you from that next vacation", "Go for whatever it is that you are planning to do chances are you will fail"]
-    x = rand(3)
-    index= x - 1 
-    render json: fortune[index]
+    x = rand(0..2)
+    render json: fortune[x]
   end
 
   def loto_method
@@ -16,17 +15,9 @@ class PagesController < ApplicationController
     render json: {message:"loto number #{loto}"}
   end 
 
-
-  def bottles_method
-    beers= 99
-    lyrics = [ ]
-    100.times do 
-      x= beers - 1
-      lyrics << "#{beers} bottles of beer on the wall, #{beers} bottles of beer.
- Take one down and pass it around, #{x} bottles of beer on the wall."
-    end
-    render json:{lyrics:} 
-
+  def count_method 
+  
+    $count = $count + 1 
+    render json:{number_of_visit:$count}
   end
-
 end
